@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Tabla_periodica</string>
+    <string name="imagen">Imagen</string>
+    <string name="tabla_periodica">Tabla periodica</string>
+    <string name="ayuda">ayuda</string>
+    <string name="buscar">Buscar</string>
+    <string name="configuracion">configuracion</string>
+    <string name="modo">modo</string>
+    <string name="modo_oscuro">Modo Oscuro</string>
+    <string name="tama_o_de_la_letra">Tamaño de la letra</string>
+    <string name="configuracion_titulo">configuracion</string>
+    <string name="ej_helio">EJ. Helio</string>
+    <string name="nombre_del_elemento">nombre del elemento</string>
+    <string name="simbolo_quimico">Simbolo quimico</string>
+    <string name="menu_busqueda">Menu Busqueda</string>
+    <string name="buscar_elemnto">Buscar Elemnto</string>
+    <string name="ej_he">EJ. HE</string>
+    <string name="numero_atomico">Numero Atomico</string>
+    <string name="_2">2</string>
+    <string name="aviso_legal">Aviso legal</string>
+    <string name="manual_de_usuario">Manual de usuario</string>
+    <string name="button">Button</string>
+    <string name="textview">TextView</string>
+    <string name="textview2">TextView</string>
+    <string name="textview3">TextView</string>
+    <string name="textview4">TextView</string>
+</resources>
