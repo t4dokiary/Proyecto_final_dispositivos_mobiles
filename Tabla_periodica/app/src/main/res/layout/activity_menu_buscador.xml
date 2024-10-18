@@ -55,10 +55,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="LabelFor,VisualLintTextFieldSize" />
+        tools:ignore="HardcodedText,LabelFor,VisualLintTextFieldSize" />
 
     <TextView
-        android:id="@+id/textView_simbolo_quimico"
+        android:id="@+id/textView_sq"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -89,8 +89,8 @@
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_simbolo_quimico"
-        tools:ignore="LabelFor,VisualLintTextFieldSize" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_sq"
+        tools:ignore="HardcodedText,LabelFor,VisualLintTextFieldSize" />
 
     <TextView
         android:id="@+id/textView5"

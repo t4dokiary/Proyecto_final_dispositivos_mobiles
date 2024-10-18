@@ -2,13 +2,9 @@ package com.example.tabla_periodica
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class mostrar_informacion : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -22,24 +18,33 @@ class mostrar_informacion : AppCompatActivity() {
         val textNumero = findViewById<TextView>(R.id.numero_atomico)
         val textPeso = findViewById<TextView>(R.id.peso_atomico)
         // ... otros TextViews ...
-        // llamamos a la función que realiza la petición a la API y procesa la respuesta
 
-        val call = apiService.getEjemplo()
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+        // Ejecuta la solicitud y maneja la respuesta
+        apiService.buscarElemento("Litio").enqueue(object : retrofit2.Callback<List<ElementoQuimico>> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<List<ElementoQuimico>>,
+                response: retrofit2.Response<List<ElementoQuimico>>
+            ) {
                 if (response.isSuccessful) {
-                    // Procesar la respuesta exitosa
-                    val data = response.body()?.string()
-                    Log.d("MainActivity", "Respuesta: $data")
-                    // Actualizar los TextViews con la información obtenida
-                    textElemento.text = data
-
-                } else {
-                    Log.e("MainActivity", "Error en la respuesta: ${response.code()}")
+                    val elementos = response.body()
+                    // Ahora puedes acceder a los campos de cada elemento químico
+                    elementos?.forEach { elemento ->
+                        println("Nombre: ${elemento.nombre}")
+                        textElemento.text = elemento.nombre
+                        println("Símbolo Químico: ${elemento.simbolo_quimico}")
+                        textSimbolo.text = elemento.simbolo_quimico
+                        println("Número Atómico: ${elemento.numero_atomico}")
+                        textNumero.text = elemento.numero_atomico.toString()
+                        println("Peso Atómico: ${elemento.peso_atomico}")
+                        textPeso.text = elemento.peso_atomico
+                    }
                 }
             }
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.e("MainActivity", "Error en la llamada: ${t.message}")
+
+            override fun onFailure(call: Call<List<ElementoQuimico>>, t: Throwable) {
+                // Maneja el error aquí
+                println("Error al obtener datos: ${t.message}")
             }
         })
     }
