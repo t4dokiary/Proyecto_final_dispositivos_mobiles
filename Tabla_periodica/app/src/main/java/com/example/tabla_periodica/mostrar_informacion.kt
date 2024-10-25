@@ -20,7 +20,7 @@ class mostrar_informacion : AppCompatActivity() {
         // ... otros TextViews ...
 
         // Ejecuta la solicitud y maneja la respuesta
-        apiService.buscarElemento("Litio").enqueue(object : retrofit2.Callback<List<ElementoQuimico>> {
+        apiService.buscarElemento(nombre = "", simbolo = "li", numeroAtomico = 0).enqueue(object : retrofit2.Callback<List<ElementoQuimico>> {
             @SuppressLint("SetTextI18n")
             override fun onResponse(
                 call: Call<List<ElementoQuimico>>,

@@ -6,10 +6,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-val retrofit: Retrofit = Retrofit.Builder()
-    .baseUrl("http://192.168.1.85/")  // Cambia esto por la URL base de tu API
+val retrofit = Retrofit.Builder()
+    .baseUrl("http://172.31.9.248/")  // Cambia esto por la URL base de tu API
     .addConverterFactory(GsonConverterFactory.create())  // Esto convierte el JSON a objetos Kotlin/Java
-    .build()
+    .build()!!
 
 // Crea la instancia de ApiService
 val apiService: ApiService = retrofit.create(ApiService::class.java)
@@ -42,8 +42,14 @@ data class ElementoQuimico(
 // Esta parte es la interfaz que define los métodos para hacer las solicitudes a la API
 interface ApiService {
     // Este metodo hace una solicitud GET a la URL "aplicaciones_mobiles/php/busqueda.php"
-    @GET("aplicaciones_mobiles/php/busqueda.php")
-    // La función buscarElemento recibe un parámetro "nombre" y retorna una lista de ElementoQuimico
-    fun buscarElemento(@Query("nombre") nombre: String): Call<List<ElementoQuimico>>
+    @GET("aplicaciones_mobiles/php/buscar.php")
+    // La función buscarElemento recibe parámetros opcionales para "nombre", "simbolo_quimico" y "numero_atomico"
+    fun buscarElemento(
+        @Query("nombre") nombre: String? = null,
+        @Query("simbolo_quimico") simbolo: String? = null,
+        @Query("numero_atomico") numeroAtomico: Int? = null
+    ): Call<List<ElementoQuimico>>
 }
+
+
 

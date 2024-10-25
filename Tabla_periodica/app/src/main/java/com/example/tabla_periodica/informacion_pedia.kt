@@ -37,12 +37,12 @@ class informacion_pedia : AppCompatActivity() {
         // resibo los datos de la actividad anterior
         val nombre_elemento = intent.getStringExtra("nombre") ?: "Desconocido"
         val simbolo = intent.getStringExtra("simbolo") ?: "N/A"
-        val numero = intent.getStringExtra("numero") ?: "0"
+        val numero = intent.getStringExtra("numero")?.toIntOrNull() ?: 0
         println("Nombre: $nombre_elemento")
         println("Símbolo Químico: $simbolo")
         println("Número Atómico: $numero")
         // Ejecuta la solicitud y maneja la respuesta
-        apiService.buscarElemento(nombre_elemento).enqueue(object : retrofit2.Callback<List<ElementoQuimico>> {
+        apiService.buscarElemento(nombre = nombre_elemento, simbolo = simbolo, numeroAtomico = numero).enqueue(object : retrofit2.Callback<List<ElementoQuimico>> {
             @SuppressLint("SetTextI18n")
             override fun onResponse(
                 call: Call<List<ElementoQuimico>>,

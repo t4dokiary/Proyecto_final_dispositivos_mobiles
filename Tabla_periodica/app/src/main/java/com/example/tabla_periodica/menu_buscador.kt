@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class menu_buscador : AppCompatActivity() {
@@ -17,15 +18,33 @@ class menu_buscador : AppCompatActivity() {
         // al darle click al boton se envia el valor del nombre a la variable
         // Encuentra el botón en el layout
         val botonBuscar = findViewById<Button>(R.id.button_buscar_elemento)
-        botonBuscar.setOnClickListener{
-            // Enviar el nombre del elemento a la actividad mostrar_informacion
+        botonBuscar.setOnClickListener {
             val intent = Intent(this, informacion_pedia::class.java)
-            // Enviar el nombre del elemento a la actividad mostrar_informacion
-            intent.putExtra("nombre", nombre.text.toString())
-            intent.putExtra("simbolo", simbolo_q.text.toString())
-            intent.putExtra("numero", numero_a.text.toString())
-            // Iniciar la actividad
-            startActivity(intent)
+
+            // Obtener los valores de los campos de entrada
+            val nombreText = nombre.text.toString().trim()
+            val simboloText = simbolo_q.text.toString().trim()
+            val numeroText = numero_a.text.toString().trim()
+
+            // Convertir el número atómico a entero si es válido
+            val numeroAtomico = numeroText.toIntOrNull() ?: 0
+
+            // Validar si los campos son inválidos
+            if ((nombreText.isEmpty() || nombreText.equals("null", true)) &&
+                (simboloText.isEmpty() || simboloText.equals("null", true)) &&
+                (numeroText.isEmpty() || numeroText.equals("null", true) || numeroAtomico == 0)
+            ) {
+                // Mostrar un mensaje emergente si todos los campos son inválidos
+                Toast.makeText(this, "Debe llenar por lo menos un campo", Toast.LENGTH_LONG).show()
+            } else {
+                // Enviar los datos válidos a la siguiente actividad
+                intent.putExtra("nombre", nombreText)
+                intent.putExtra("simbolo", simboloText)
+                intent.putExtra("numero", numeroText)
+
+                // Iniciar la actividad
+                startActivity(intent)
+            }
         }
     }
 }
