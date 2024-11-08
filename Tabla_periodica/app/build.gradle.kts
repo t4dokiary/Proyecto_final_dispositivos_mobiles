@@ -47,6 +47,16 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.ui.v120)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.foundation)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

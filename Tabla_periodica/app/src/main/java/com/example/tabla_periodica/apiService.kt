@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 val retrofit = Retrofit.Builder()
-    .baseUrl("http://172.31.9.248/")  // Cambia esto por la URL base de tu API
+    .baseUrl("http://172.18.161.95/")  // Cambia esto por la URL base de tu API
     .addConverterFactory(GsonConverterFactory.create())  // Esto convierte el JSON a objetos Kotlin/Java
     .build()!!
 
